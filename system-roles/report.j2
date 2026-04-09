@@ -1,0 +1,6 @@
+#haw
+HOST={{ ansible_hostname | default('NONE',true) }}
+BIOS_VERSION={{ ansible_bios_version | default('NONE',true) }}
+TOTAL_MEMORY={{ ansible_memtotal_mb | default('NONE',true) }}
+VDA_SIZE={% if ansible_devices.sda is defined %} {{ ansible_devices.sda.size }} {% else %} NONE {% endif %}
+VDB_SIZE={% if ansible_devices.sdb is defined %} {{ ansible_devices.sdb.size }} {% else %} NONE {% endif %}

@@ -1,0 +1,13 @@
+---
+# handlers file for roles/apache
+- name : start httpd service
+  ansible.builtin.service:
+    name: httpd
+    state: restarted
+    enabled: yes  
+
+- name: start firewalld service
+  ansible.builtin.service:
+    name: firewalld
+    state: restarted
+    enabled: yes

@@ -1,0 +1,23 @@
+---
+- name: Package Install
+  hosts: dev,test,prod
+  become: true
+  tasks:
+    - name: Install package php man mariadb
+      ansible.builtin.dnf:
+        name:
+          - php
+          - mariadb
+        state: installed
+    
+    - name: Install package group
+      ansible.builtin.dnf:
+        name: "@Development Tools"
+        state: present
+      when: inventory_hostname in groups['dev']
+    
+    - name: install update
+      ansible.builtin.dnf:
+        name: "*"
+        state: latest
+      when: inventory_hostname in  groups['dev']

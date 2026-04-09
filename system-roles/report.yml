@@ -1,0 +1,9 @@
+---
+- name: Generate the hosts file
+  hosts: all
+  become: true
+  tasks:
+    - name: Generate the file /etc/myhosts on dev host group
+      template:
+        src: report.j2
+        dest: /root/hwreport.txt     

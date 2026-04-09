@@ -1,0 +1,44 @@
+---
+- name: User creation
+  hosts: dev,test 
+  become: true
+  vars_files:
+    - locker.yml
+    - user_list.yml
+  tasks:
+    - name: group creation
+      ansible.builtin.group:
+        name: admin
+        state: present
+      when: inventory_hostname in groups['dev'] or  inventory_hostname in groups['dev']
+    - name: User creation
+      ansible.builtin.user:
+        name: "{{item.name}}" 
+        password: "{{ pw_developer|password_hash('sha512') }}"
+        password_expire_max: 30
+        state: present
+      loop: 
+        "{{ users }}"
+      when: item.job == "developer" and inventory_hostname in groups['dev'] or item.job == "developer" and inventory_hostname in groups['test'] 
+
+- name: User creation second
+  hosts: prod
+  become: true
+  vars_files:
+    - locker.yml
+    - user_list.yml
+  tasks:
+    - name: group creation 2
+      ansible.builtin.group:
+        name: opmgr
+        state: present
+      when: inventory_hostname in groups['prod'] 
+    - name: User creation
+      ansible.builtin.user:
+        name: "{{item.name}}"
+        password: "{{ pw_manager | password_hash('sha512') }}"
+        password_expire_max: 30
+        state: present
+      loop: 
+        "{{ users }}"
+      when: item.job == "manager" and inventory_hostname in groups['prod']

@@ -1,0 +1,34 @@
+---
+- name: Web Content creation play
+  hosts: dev
+  become: true
+  tasks:
+    - name: Create Group
+      ansible.builtin.group:
+        name: webdev
+        state: present
+
+    - name: Create Directory
+      ansible.builtin.file:
+        path: /webdev
+        group: webdev
+        state: directory
+        setype: httpd_sys_content_t
+        recurse: true
+        mode: 2775
+    - name: Create link
+      ansible.builtin.file:
+        src: /webdev
+        dest: /var/www/html/webdev
+        state: link
+        setype: httpd_sys_content_t
+    - name: Create Content
+      ansible.builtin.copy:
+        content: "Development\n"
+        dest: /webdev/index.html
+        setype: httpd_sys_content_t
+    - name: File remove 
+      ansible.builtin.file:
+        path: /var/www/html/index.html
+        state: absent
+  

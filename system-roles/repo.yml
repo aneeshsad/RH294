@@ -1,0 +1,22 @@
+---
+- name: Install Repo
+  hosts: all
+  become: true
+  tasks:
+    - name: EX294_RHELA
+      ansible.builtin.yum_repository:
+        name: EX294_RHELA
+        description: EX294 base Software
+        baseurl: http://content.example.com/rhel10.0/x86_64/dvd/BaseOS
+        gpgkey: http://content.example.com/rhel10.0/x86_64/dvd/RPM-GPG-KEY-redhat-release
+        gpgcheck: yes 
+        enabled: yes 
+    
+    - name: EX294_RHELB
+      ansible.builtin.yum_repository:
+        name: EX294_RHELB
+        description: EX294 AppStream Software
+        baseurl: http://content.example.com/rhel10.0/x86_64/dvd/AppStream
+        gpgkey: http://content.example.com/rhel10.0/x86_64/dvd/RPM-GPG-KEY-redhat-release
+        gpgcheck: yes 
+        enabled: yes 

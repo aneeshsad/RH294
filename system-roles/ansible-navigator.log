@@ -1,0 +1,25 @@
+2026-04-08T23:24:16.641592+00:00 WARNING 'ansible_navigator.image_manager.puller._log_message' Image inspection failed, image assumed to be corrupted or missing
+2026-04-08T23:24:16.642073+00:00 WARNING 'ansible_navigator.image_manager.puller._log_message' stdout: []
+
+2026-04-08T23:24:16.642139+00:00 WARNING 'ansible_navigator.image_manager.puller._log_message' stderr: Error: utility.lab.example.com:5000/ansible-automation-platform-25/ansible-dev-tools-rhel8: image not known
+
+2026-04-09T00:56:20.504022+00:00 WARNING 'ansible_navigator.image_manager.puller._log_message' Image inspection failed, image assumed to be corrupted or missing
+2026-04-09T00:56:20.504460+00:00 WARNING 'ansible_navigator.image_manager.puller._log_message' stdout: []
+
+2026-04-09T00:56:20.504534+00:00 WARNING 'ansible_navigator.image_manager.puller._log_message' stderr: Error: utility.lab.example.com:5000/ansible-automation-platform-25/ee-supported-rhel8:latest: image not known
+
+2026-04-09T07:08:51.932188+00:00 WARNING 'ansible_navigator.image_manager.puller._log_message' Image inspection failed, image assumed to be corrupted or missing
+2026-04-09T07:08:51.933859+00:00 WARNING 'ansible_navigator.image_manager.puller._log_message' stdout: []
+
+2026-04-09T07:08:51.933989+00:00 WARNING 'ansible_navigator.image_manager.puller._log_message' stderr: Error: utility.lab.example.com:5000/ansible-automation-platform-25/ansible-dev-tools-rhel8: image not known
+
+2026-04-09T08:25:45.329448+00:00 WARNING 'ansible_navigator.image_manager.puller._log_message' Image inspection failed, image assumed to be corrupted or missing
+2026-04-09T08:25:45.330920+00:00 WARNING 'ansible_navigator.image_manager.puller._log_message' stdout: []
+
+2026-04-09T08:25:45.331051+00:00 WARNING 'ansible_navigator.image_manager.puller._log_message' stderr: Error: utility.lab.example.com:5000/ansible-automation-platform-25/ee-supported-rhel8:latest: image not known
+
+2026-04-09T08:46:31.250245+00:00 WARNING 'ansible_navigator.image_manager.puller._log_message' Image inspection failed, image assumed to be corrupted or missing
+2026-04-09T08:46:31.251924+00:00 WARNING 'ansible_navigator.image_manager.puller._log_message' stdout: []
+
+2026-04-09T08:46:31.252092+00:00 WARNING 'ansible_navigator.image_manager.puller._log_message' stderr: Error: utility.lab.example.com:5000/ansible-automation-platform-25/ansible-dev-tools-rhel8: image not known
+

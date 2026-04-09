@@ -1,0 +1,61 @@
+--- 
+- name: Create partition
+  hosts: serverd.lab.example.com
+  become: true
+  tasks:
+    - name: disk check first
+      command: lsblk /dev/sdb
+      register: lsbkcheck
+      ignore_errors: yes
+    - name: disk check
+      ansible.builtin.fail:
+        msg : "Disk don't eexit" 
+      when: lsbkcheck.rc != 0         
+    - name: block create partition 1500B
+      block:
+        - name: create partition
+          parted:
+            device: /dev/sdb
+            number: 1
+            part_type: primary
+            part_start: 1MiB
+            part_end: 6000MiB
+            state: present
+          ignore_errors: yes
+          register: partion_done  
+        - name: filesystem
+          filesystem:
+            fstype: ext4
+            device: /dev/sdb1
+         
+        - name: mount
+          mount:
+            path: /backup
+            src: /dev/sdb1
+            fstype: ext4
+            state: mounted
+
+      rescue:
+        - name: msg
+          debug:
+            msg: "Could not create partion of that size"
+        - name: create partition
+          parted:
+            device: /dev/sdb
+            number: 1
+            part_type: primary
+            part_start: 1MiB
+            part_end: 800MiB
+            state: present
+          ignore_errors: yes 
+        - name: filesystem
+          filesystem:
+            fstype: ext4
+            device: /dev/sdb1
+        - name: mount
+          mount:
+            path: /backup
+            src: /dev/sdb1
+            fstype: ext4
+            state: mounted
+           
